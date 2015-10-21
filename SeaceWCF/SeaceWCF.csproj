@@ -114,13 +114,19 @@
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Querys\Person\IPerson.cs" />
+    <Compile Include="Querys\Person\Person.cs" />
+    <Compile Include="Querys\Querys.cs" />
     <Compile Include="ServiceApp.svc.cs">
       <DependentUpon>ServiceApp.svc</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Querys\" />
+    <Folder Include="Querys\ForumCategory\" />
+    <Folder Include="Querys\ForumPost\" />
+    <Folder Include="Querys\ForumSubCategory\" />
+    <Folder Include="Querys\ForumVote\" />
     <Folder Include="tmp\" />
   </ItemGroup>
   <ItemGroup>
