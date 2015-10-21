@@ -1,0 +1,442 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="dbSEACEappModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="forumCategories">
+          <Key>
+            <PropertyRef Name="idCategory" />
+          </Key>
+          <Property Name="idCategory" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="50" />
+          <Property Name="description" Type="nvarchar" MaxLength="500" />
+          <Property Name="date" Type="date" />
+          <Property Name="ip" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="forumPosts">
+          <Key>
+            <PropertyRef Name="idForumPost" />
+          </Key>
+          <Property Name="idForumPost" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idSubcategory" Type="bigint" />
+          <Property Name="idPerson" Type="bigint" />
+          <Property Name="parent_post" Type="bigint" />
+          <Property Name="title" Type="nvarchar" MaxLength="90" />
+          <Property Name="content_forum" Type="nvarchar" MaxLength="1000" />
+          <Property Name="date" Type="date" />
+          <Property Name="ip" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="forumSubcategories">
+          <Key>
+            <PropertyRef Name="idSubcategory" />
+          </Key>
+          <Property Name="idSubcategory" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idCategory" Type="bigint" />
+          <Property Name="title" Type="nvarchar" MaxLength="50" />
+          <Property Name="description" Type="nvarchar" MaxLength="500" />
+          <Property Name="date" Type="date" />
+          <Property Name="ip" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="forumVotes">
+          <Key>
+            <PropertyRef Name="idVote" />
+          </Key>
+          <Property Name="idVote" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idForumPost" Type="bigint" />
+          <Property Name="idPerson" Type="bigint" />
+          <Property Name="date" Type="date" />
+          <Property Name="comment" Type="nvarchar" MaxLength="50" />
+          <Property Name="ip" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="persons">
+          <Key>
+            <PropertyRef Name="idPerson" />
+          </Key>
+          <Property Name="idPerson" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="last_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="picture" Type="image" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="active" Type="bit" />
+          <Property Name="username" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+          <Property Name="last_update" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_forumPosts_forumPosts">
+          <End Role="forumPosts" Type="Self.forumPosts" Multiplicity="0..1" />
+          <End Role="forumPosts1" Type="Self.forumPosts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="forumPosts">
+              <PropertyRef Name="idForumPost" />
+            </Principal>
+            <Dependent Role="forumPosts1">
+              <PropertyRef Name="parent_post" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_forumPosts_forumSubcategories">
+          <End Role="forumSubcategories" Type="Self.forumSubcategories" Multiplicity="0..1" />
+          <End Role="forumPosts" Type="Self.forumPosts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="forumSubcategories">
+              <PropertyRef Name="idSubcategory" />
+            </Principal>
+            <Dependent Role="forumPosts">
+              <PropertyRef Name="idSubcategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_forumPosts_persons">
+          <End Role="persons" Type="Self.persons" Multiplicity="0..1" />
+          <End Role="forumPosts" Type="Self.forumPosts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persons">
+              <PropertyRef Name="idPerson" />
+            </Principal>
+            <Dependent Role="forumPosts">
+              <PropertyRef Name="idPerson" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_forumSubcategories_forumCategories">
+          <End Role="forumCategories" Type="Self.forumCategories" Multiplicity="0..1" />
+          <End Role="forumSubcategories" Type="Self.forumSubcategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="forumCategories">
+              <PropertyRef Name="idCategory" />
+            </Principal>
+            <Dependent Role="forumSubcategories">
+              <PropertyRef Name="idCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_forumVotes_forumPosts">
+          <End Role="forumPosts" Type="Self.forumPosts" Multiplicity="0..1" />
+          <End Role="forumVotes" Type="Self.forumVotes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="forumPosts">
+              <PropertyRef Name="idForumPost" />
+            </Principal>
+            <Dependent Role="forumVotes">
+              <PropertyRef Name="idForumPost" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_forumVotes_persons">
+          <End Role="persons" Type="Self.persons" Multiplicity="0..1" />
+          <End Role="forumVotes" Type="Self.forumVotes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persons">
+              <PropertyRef Name="idPerson" />
+            </Principal>
+            <Dependent Role="forumVotes">
+              <PropertyRef Name="idPerson" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbSEACEappModelStoreContainer">
+          <EntitySet Name="forumCategories" EntityType="Self.forumCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="forumPosts" EntityType="Self.forumPosts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="forumSubcategories" EntityType="Self.forumSubcategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="forumVotes" EntityType="Self.forumVotes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="persons" EntityType="Self.persons" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_forumPosts_forumPosts" Association="Self.FK_forumPosts_forumPosts">
+            <End Role="forumPosts" EntitySet="forumPosts" />
+            <End Role="forumPosts1" EntitySet="forumPosts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_forumPosts_forumSubcategories" Association="Self.FK_forumPosts_forumSubcategories">
+            <End Role="forumSubcategories" EntitySet="forumSubcategories" />
+            <End Role="forumPosts" EntitySet="forumPosts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_forumPosts_persons" Association="Self.FK_forumPosts_persons">
+            <End Role="persons" EntitySet="persons" />
+            <End Role="forumPosts" EntitySet="forumPosts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_forumSubcategories_forumCategories" Association="Self.FK_forumSubcategories_forumCategories">
+            <End Role="forumCategories" EntitySet="forumCategories" />
+            <End Role="forumSubcategories" EntitySet="forumSubcategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_forumVotes_forumPosts" Association="Self.FK_forumVotes_forumPosts">
+            <End Role="forumPosts" EntitySet="forumPosts" />
+            <End Role="forumVotes" EntitySet="forumVotes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_forumVotes_persons" Association="Self.FK_forumVotes_persons">
+            <End Role="persons" EntitySet="persons" />
+            <End Role="forumVotes" EntitySet="forumVotes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbSEACEappModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="forumCategory">
+          <Key>
+            <PropertyRef Name="idCategory" />
+          </Key>
+          <Property Name="idCategory" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="ip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="forumSubcategories" Relationship="Self.FK_forumSubcategories_forumCategories" FromRole="forumCategories" ToRole="forumSubcategories" />
+        </EntityType>
+        <EntityType Name="forumPost">
+          <Key>
+            <PropertyRef Name="idForumPost" />
+          </Key>
+          <Property Name="idForumPost" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idSubcategory" Type="Int64" />
+          <Property Name="idPerson" Type="Int64" />
+          <Property Name="parent_post" Type="Int64" />
+          <Property Name="title" Type="String" MaxLength="90" FixedLength="false" Unicode="true" />
+          <Property Name="content_forum" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="ip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="forumPosts1" Relationship="Self.FK_forumPosts_forumPosts" FromRole="forumPosts" ToRole="forumPosts1" />
+          <NavigationProperty Name="forumPost1" Relationship="Self.FK_forumPosts_forumPosts" FromRole="forumPosts1" ToRole="forumPosts" />
+          <NavigationProperty Name="forumSubcategory" Relationship="Self.FK_forumPosts_forumSubcategories" FromRole="forumPosts" ToRole="forumSubcategories" />
+          <NavigationProperty Name="person" Relationship="Self.FK_forumPosts_persons" FromRole="forumPosts" ToRole="persons" />
+          <NavigationProperty Name="forumVotes" Relationship="Self.FK_forumVotes_forumPosts" FromRole="forumPosts" ToRole="forumVotes" />
+        </EntityType>
+        <EntityType Name="forumSubcategory">
+          <Key>
+            <PropertyRef Name="idSubcategory" />
+          </Key>
+          <Property Name="idSubcategory" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCategory" Type="Int64" />
+          <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="ip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="forumCategory" Relationship="Self.FK_forumSubcategories_forumCategories" FromRole="forumSubcategories" ToRole="forumCategories" />
+          <NavigationProperty Name="forumPosts" Relationship="Self.FK_forumPosts_forumSubcategories" FromRole="forumSubcategories" ToRole="forumPosts" />
+        </EntityType>
+        <EntityType Name="forumVote">
+          <Key>
+            <PropertyRef Name="idVote" />
+          </Key>
+          <Property Name="idVote" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idForumPost" Type="Int64" />
+          <Property Name="idPerson" Type="Int64" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="comment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="forumPost" Relationship="Self.FK_forumVotes_forumPosts" FromRole="forumVotes" ToRole="forumPosts" />
+          <NavigationProperty Name="person" Relationship="Self.FK_forumVotes_persons" FromRole="forumVotes" ToRole="persons" />
+        </EntityType>
+        <EntityType Name="person">
+          <Key>
+            <PropertyRef Name="idPerson" />
+          </Key>
+          <Property Name="idPerson" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="active" Type="Boolean" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="last_update" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="forumPosts" Relationship="Self.FK_forumPosts_persons" FromRole="persons" ToRole="forumPosts" />
+          <NavigationProperty Name="forumVotes" Relationship="Self.FK_forumVotes_persons" FromRole="persons" ToRole="forumVotes" />
+        </EntityType>
+        <Association Name="FK_forumSubcategories_forumCategories">
+          <End Role="forumCategories" Type="Self.forumCategory" Multiplicity="0..1" />
+          <End Role="forumSubcategories" Type="Self.forumSubcategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="forumCategories">
+              <PropertyRef Name="idCategory" />
+            </Principal>
+            <Dependent Role="forumSubcategories">
+              <PropertyRef Name="idCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_forumPosts_forumPosts">
+          <End Role="forumPosts" Type="Self.forumPost" Multiplicity="0..1" />
+          <End Role="forumPosts1" Type="Self.forumPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="forumPosts">
+              <PropertyRef Name="idForumPost" />
+            </Principal>
+            <Dependent Role="forumPosts1">
+              <PropertyRef Name="parent_post" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_forumPosts_forumSubcategories">
+          <End Role="forumSubcategories" Type="Self.forumSubcategory" Multiplicity="0..1" />
+          <End Role="forumPosts" Type="Self.forumPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="forumSubcategories">
+              <PropertyRef Name="idSubcategory" />
+            </Principal>
+            <Dependent Role="forumPosts">
+              <PropertyRef Name="idSubcategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_forumPosts_persons">
+          <End Role="persons" Type="Self.person" Multiplicity="0..1" />
+          <End Role="forumPosts" Type="Self.forumPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persons">
+              <PropertyRef Name="idPerson" />
+            </Principal>
+            <Dependent Role="forumPosts">
+              <PropertyRef Name="idPerson" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_forumVotes_forumPosts">
+          <End Role="forumPosts" Type="Self.forumPost" Multiplicity="0..1" />
+          <End Role="forumVotes" Type="Self.forumVote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="forumPosts">
+              <PropertyRef Name="idForumPost" />
+            </Principal>
+            <Dependent Role="forumVotes">
+              <PropertyRef Name="idForumPost" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_forumVotes_persons">
+          <End Role="persons" Type="Self.person" Multiplicity="0..1" />
+          <End Role="forumVotes" Type="Self.forumVote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persons">
+              <PropertyRef Name="idPerson" />
+            </Principal>
+            <Dependent Role="forumVotes">
+              <PropertyRef Name="idPerson" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbSEACEappEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="forumCategories" EntityType="Self.forumCategory" />
+          <EntitySet Name="forumPosts" EntityType="Self.forumPost" />
+          <EntitySet Name="forumSubcategories" EntityType="Self.forumSubcategory" />
+          <EntitySet Name="forumVotes" EntityType="Self.forumVote" />
+          <EntitySet Name="persons" EntityType="Self.person" />
+          <AssociationSet Name="FK_forumSubcategories_forumCategories" Association="Self.FK_forumSubcategories_forumCategories">
+            <End Role="forumCategories" EntitySet="forumCategories" />
+            <End Role="forumSubcategories" EntitySet="forumSubcategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_forumPosts_forumPosts" Association="Self.FK_forumPosts_forumPosts">
+            <End Role="forumPosts" EntitySet="forumPosts" />
+            <End Role="forumPosts1" EntitySet="forumPosts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_forumPosts_forumSubcategories" Association="Self.FK_forumPosts_forumSubcategories">
+            <End Role="forumSubcategories" EntitySet="forumSubcategories" />
+            <End Role="forumPosts" EntitySet="forumPosts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_forumPosts_persons" Association="Self.FK_forumPosts_persons">
+            <End Role="persons" EntitySet="persons" />
+            <End Role="forumPosts" EntitySet="forumPosts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_forumVotes_forumPosts" Association="Self.FK_forumVotes_forumPosts">
+            <End Role="forumPosts" EntitySet="forumPosts" />
+            <End Role="forumVotes" EntitySet="forumVotes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_forumVotes_persons" Association="Self.FK_forumVotes_persons">
+            <End Role="persons" EntitySet="persons" />
+            <End Role="forumVotes" EntitySet="forumVotes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbSEACEappModelStoreContainer" CdmEntityContainer="dbSEACEappEntities">
+          <EntitySetMapping Name="forumCategories">
+            <EntityTypeMapping TypeName="dbSEACEappModel.forumCategory">
+              <MappingFragment StoreEntitySet="forumCategories">
+                <ScalarProperty Name="idCategory" ColumnName="idCategory" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="ip" ColumnName="ip" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="forumPosts">
+            <EntityTypeMapping TypeName="dbSEACEappModel.forumPost">
+              <MappingFragment StoreEntitySet="forumPosts">
+                <ScalarProperty Name="idForumPost" ColumnName="idForumPost" />
+                <ScalarProperty Name="idSubcategory" ColumnName="idSubcategory" />
+                <ScalarProperty Name="idPerson" ColumnName="idPerson" />
+                <ScalarProperty Name="parent_post" ColumnName="parent_post" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="content_forum" ColumnName="content_forum" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="ip" ColumnName="ip" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="forumSubcategories">
+            <EntityTypeMapping TypeName="dbSEACEappModel.forumSubcategory">
+              <MappingFragment StoreEntitySet="forumSubcategories">
+                <ScalarProperty Name="idSubcategory" ColumnName="idSubcategory" />
+                <ScalarProperty Name="idCategory" ColumnName="idCategory" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="ip" ColumnName="ip" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="forumVotes">
+            <EntityTypeMapping TypeName="dbSEACEappModel.forumVote">
+              <MappingFragment StoreEntitySet="forumVotes">
+                <ScalarProperty Name="idVote" ColumnName="idVote" />
+                <ScalarProperty Name="idForumPost" ColumnName="idForumPost" />
+                <ScalarProperty Name="idPerson" ColumnName="idPerson" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="ip" ColumnName="ip" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="persons">
+            <EntityTypeMapping TypeName="dbSEACEappModel.person">
+              <MappingFragment StoreEntitySet="persons">
+                <ScalarProperty Name="idPerson" ColumnName="idPerson" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="picture" ColumnName="picture" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="last_update" ColumnName="last_update" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

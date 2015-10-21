@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="599774e23b46433c833bea16a9d62c9c" Name="Diagram1">
+        <EntityTypeShape EntityType="dbSEACEappModel.forumCategory" Width="1.5" PointX="4.125" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbSEACEappModel.forumPost" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbSEACEappModel.forumSubcategory" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbSEACEappModel.forumVote" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbSEACEappModel.person" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="dbSEACEappModel.FK_forumSubcategories_forumCategories" ManuallyRouted="false" />
+        <AssociationConnector Association="dbSEACEappModel.FK_forumPosts_forumPosts" ManuallyRouted="false" />
+        <AssociationConnector Association="dbSEACEappModel.FK_forumPosts_forumSubcategories" ManuallyRouted="false" />
+        <AssociationConnector Association="dbSEACEappModel.FK_forumPosts_persons" ManuallyRouted="false" />
+        <AssociationConnector Association="dbSEACEappModel.FK_forumVotes_forumPosts" ManuallyRouted="false" />
+        <AssociationConnector Association="dbSEACEappModel.FK_forumVotes_persons" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
