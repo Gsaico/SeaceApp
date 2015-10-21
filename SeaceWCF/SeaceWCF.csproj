@@ -114,8 +114,8 @@
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Querys\Person\IPerson.cs" />
-    <Compile Include="Querys\Person\Person.cs" />
+    <Compile Include="Querys\Person\IPersonQuery.cs" />
+    <Compile Include="Querys\Person\PersonQuery.cs" />
     <Compile Include="Querys\Querys.cs" />
     <Compile Include="ServiceApp.svc.cs">
       <DependentUpon>ServiceApp.svc</DependentUpon>

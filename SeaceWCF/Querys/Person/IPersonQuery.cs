@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace SeaceWCF.Querys.Person
 {
-   public  interface IPerson
+   public  interface IPersonQuery
     {
-        int InsertarPersona(Dtos.personDTO dto);
+        long InsertarPersona(Dtos.personDTO dto);
         bool ActualizarPersona(Dtos.personDTO dto);
-        bool EliminarPersona(int idperson);
+        bool EliminarPersona(long idperson);
         IEnumerable<Dtos.personDTO> ListarPersonaXnombre(string nombrespersona);
         IEnumerable<Dtos.personDTO> ListarPersonas();
-        Dtos.personDTO BuscarPersonaPorID(int idperson);
+        Dtos.personDTO BuscarPersonaPorID(long idperson);
     }
 }

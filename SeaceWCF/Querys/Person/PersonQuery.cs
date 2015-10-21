@@ -3,22 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SeaceWCF.Assembler;
 
 namespace SeaceWCF.Querys
 {
-    public partial class Querys: Person.IPerson 
+    public partial class Querys: Person.IPersonQuery 
     {
-        public int InsertarPersona(Dtos.personDTO dto)
+        public long InsertarPersona(Dtos.personDTO dto)
         {
             try
             {
                 using (var modelo = new dbSEACEappEntities())
                 {
                     var entity = dto.ToEntity();
-                    modelo.usuario.Add(entity);
+                    modelo.persons.Add(entity);
                     modelo.SaveChanges();
 
-                    return entity.ID_Usuario;
+                    return entity.idPerson;
 
 
                 }
@@ -35,10 +36,10 @@ namespace SeaceWCF.Querys
             {
                 using (var modelo = new dbSEACEappEntities())
                 {
-                    var w = modelo.usuario.Where(q => q.ID_Usuario == dto.ID_Usuario).Select(q => q).FirstOrDefault();
+                    var w = modelo.persons.Where(q => q.idPerson == dto.idPerson).Select(q => q).FirstOrDefault();
                     if (w == null) return false;
 
-                    Dominio.Convertidores.usuarioAssembler.Actualizar(dto, w);
+                    SeaceWCF.Assembler.personAssembler.Actualizar(dto, w);
                     modelo.SaveChanges();
 
                     return true;
@@ -50,20 +51,17 @@ namespace SeaceWCF.Querys
             }
         }
 
-        public bool EliminarPersona(int idperson)
+        public bool EliminarPersona(long idperson)
         {
             try
             {
                 using (var modelo = new dbSEACEappEntities())
                 {
-                    PersistenciaDatos.usuario x = modelo.usuario.Where(q => q.ID_Usuario == idusuario).Select(q => q).FirstOrDefault();
+                    person x = modelo.persons.Where(q => q.idPerson == idperson).Select(q => q).FirstOrDefault();
                     if (x == null) return false;
-                    modelo.usuario.Remove(x);
+                    modelo.persons.Remove(x);
 
-                    foreach (var modeloproyectoDTOX in modelo.proyecto.Where(d => d.ID_Usuario == idusuario))
-                    {
-                        modelo.proyecto.Remove(modeloproyectoDTOX);
-                    }
+                   
                     modelo.SaveChanges();
 
 
@@ -82,10 +80,10 @@ namespace SeaceWCF.Querys
             {
                 using (var modelo = new dbSEACEappEntities())
                 {
-                    var entity = modelo.usuario.Where(q => q.nombres.Contains(nombresusuario)).Select(q => q).ToList();
+                    var entity = modelo.persons.Where(q => q.first_name.Contains(nombrespersona)).Select(q => q).ToList();
 
                     if (entity == null) return null;
-                    return Dominio.Convertidores.usuarioAssembler.ToDTOs(entity);
+                    return SeaceWCF.Assembler.personAssembler.ToDTOs(entity);
 
                 }
             }
@@ -101,11 +99,11 @@ namespace SeaceWCF.Querys
             {
                 using (var modelo = new dbSEACEappEntities())
                 {
-                    var entity = modelo.usuario.Select(q => q).ToList();
+                    var entity = modelo.persons.Select(q => q).ToList();
 
                     if (entity == null) return null;
 
-                    return Dominio.Convertidores.usuarioAssembler.ToDTOs(entity);
+                    return SeaceWCF.Assembler.personAssembler.ToDTOs(entity);
                 }
             }
             catch (Exception)
@@ -114,16 +112,16 @@ namespace SeaceWCF.Querys
             }
         }
 
-        public Dtos.personDTO BuscarPersonaPorID(int idperson)
+        public Dtos.personDTO BuscarPersonaPorID(long idperson)
         {
             try
             {
                 using (var modelo = new dbSEACEappEntities())
                 {
-                    var entity = modelo.usuario.Where(q => q.ID_Usuario == idusuario).Select(q => q).FirstOrDefault();
+                    var entity = modelo.persons.Where(q => q.idPerson  == idperson).Select(q => q).FirstOrDefault();
 
                     if (entity == null) return null;
-                    return Dominio.Convertidores.usuarioAssembler.ToDTO(entity);
+                    return SeaceWCF.Assembler.personAssembler.ToDTO(entity);
 
                 }
             }
