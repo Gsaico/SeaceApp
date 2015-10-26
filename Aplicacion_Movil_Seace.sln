@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Servidor", "Servidor", "{2659AEBF-3E0B-44FC-A29C-5B968FD23011}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cliente", "Cliente", "{EC774193-5DEA-44C7-B1CB-1BAD76534533}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clientes", "Clientes", "{EC774193-5DEA-44C7-B1CB-1BAD76534533}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeaceWCF", "SeaceWCF\SeaceWCF.csproj", "{59BB8396-4EF8-40AB-A1B1-12BF005A97BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppSeace", "AppSeace\AppSeace.csproj", "{37105785-2C63-4B3D-A1AB-E4BBF8E71D98}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DroidSeace", "DroidSeace\DroidSeace.csproj", "{534679FE-1438-4339-8426-BC77D71275C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,18 +21,18 @@ Global
 		{59BB8396-4EF8-40AB-A1B1-12BF005A97BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59BB8396-4EF8-40AB-A1B1-12BF005A97BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59BB8396-4EF8-40AB-A1B1-12BF005A97BC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{37105785-2C63-4B3D-A1AB-E4BBF8E71D98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{37105785-2C63-4B3D-A1AB-E4BBF8E71D98}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{37105785-2C63-4B3D-A1AB-E4BBF8E71D98}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{37105785-2C63-4B3D-A1AB-E4BBF8E71D98}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{37105785-2C63-4B3D-A1AB-E4BBF8E71D98}.Release|Any CPU.Build.0 = Release|Any CPU
-		{37105785-2C63-4B3D-A1AB-E4BBF8E71D98}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{534679FE-1438-4339-8426-BC77D71275C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{534679FE-1438-4339-8426-BC77D71275C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{534679FE-1438-4339-8426-BC77D71275C6}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{534679FE-1438-4339-8426-BC77D71275C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{534679FE-1438-4339-8426-BC77D71275C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{534679FE-1438-4339-8426-BC77D71275C6}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{59BB8396-4EF8-40AB-A1B1-12BF005A97BC} = {2659AEBF-3E0B-44FC-A29C-5B968FD23011}
-		{37105785-2C63-4B3D-A1AB-E4BBF8E71D98} = {EC774193-5DEA-44C7-B1CB-1BAD76534533}
+		{534679FE-1438-4339-8426-BC77D71275C6} = {EC774193-5DEA-44C7-B1CB-1BAD76534533}
 	EndGlobalSection
 EndGlobal

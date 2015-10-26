@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using SeaceWCF.Assembler;
 
-namespace SeaceWCF.Querys
+namespace SeaceWCF
 {
-    public partial class Querys: Person.IPersonQuery 
+    public partial class ServiceApp : Querys.Person.IPersonQuery 
     {
         public long InsertarPersona(Dtos.personDTO dto)
         {
