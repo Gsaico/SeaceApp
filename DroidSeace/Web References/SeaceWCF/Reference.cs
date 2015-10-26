@@ -41,11 +41,13 @@ namespace DroidSeace.SeaceWCF {
         
         private System.Threading.SendOrPostCallback BuscarPersonaPorIDOperationCompleted;
         
+        private System.Threading.SendOrPostCallback VerificarPasswordOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
         public ServiceApp() {
-            this.Url = "http://192.168.1.34/SeaceService/ServiceApp.svc";
+            this.Url = "http://gsaico-001-site1.btempurl.com/SeaceService/ServiceApp.svc";
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
                 this.useDefaultCredentialsSetExplicitly = false;
@@ -96,6 +98,9 @@ namespace DroidSeace.SeaceWCF {
         
         /// <remarks/>
         public event BuscarPersonaPorIDCompletedEventHandler BuscarPersonaPorIDCompleted;
+        
+        /// <remarks/>
+        public event VerificarPasswordCompletedEventHandler VerificarPasswordCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IPersonQuery/InsertarPersona", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -278,6 +283,36 @@ namespace DroidSeace.SeaceWCF {
             if ((this.BuscarPersonaPorIDCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.BuscarPersonaPorIDCompleted(this, new BuscarPersonaPorIDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IPersonQuery/VerificarPassword", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void VerificarPassword([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] personDTO dto, out bool VerificarPasswordResult, [System.Xml.Serialization.XmlIgnoreAttribute()] out bool VerificarPasswordResultSpecified) {
+            object[] results = this.Invoke("VerificarPassword", new object[] {
+                        dto});
+            VerificarPasswordResult = ((bool)(results[0]));
+            VerificarPasswordResultSpecified = ((bool)(results[1]));
+        }
+        
+        /// <remarks/>
+        public void VerificarPasswordAsync(personDTO dto) {
+            this.VerificarPasswordAsync(dto, null);
+        }
+        
+        /// <remarks/>
+        public void VerificarPasswordAsync(personDTO dto, object userState) {
+            if ((this.VerificarPasswordOperationCompleted == null)) {
+                this.VerificarPasswordOperationCompleted = new System.Threading.SendOrPostCallback(this.OnVerificarPasswordOperationCompleted);
+            }
+            this.InvokeAsync("VerificarPassword", new object[] {
+                        dto}, this.VerificarPasswordOperationCompleted, userState);
+        }
+        
+        private void OnVerificarPasswordOperationCompleted(object arg) {
+            if ((this.VerificarPasswordCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.VerificarPasswordCompleted(this, new VerificarPasswordCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1335,6 +1370,40 @@ namespace DroidSeace.SeaceWCF {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((personDTO)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    public delegate void VerificarPasswordCompletedEventHandler(object sender, VerificarPasswordCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class VerificarPasswordCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal VerificarPasswordCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool VerificarPasswordResult {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+        
+        /// <remarks/>
+        public bool VerificarPasswordResultSpecified {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[1]));
             }
         }
     }

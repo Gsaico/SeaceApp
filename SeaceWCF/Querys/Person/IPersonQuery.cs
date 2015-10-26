@@ -22,5 +22,7 @@ namespace SeaceWCF.Querys.Person
         IEnumerable<Dtos.personDTO> ListarPersonas();
         [OperationContract]
         Dtos.personDTO BuscarPersonaPorID(long idperson);
+        [OperationContract]
+        bool VerificarPassword(Dtos.personDTO dto);
     }
 }

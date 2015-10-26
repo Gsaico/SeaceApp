@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Results>
-    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://192.168.1.34/SeaceService/ServiceApp.svc?xsd=xsd1" filename="ServiceApp.xsd" />
-    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://192.168.1.34/SeaceService/ServiceApp.svc?wsdl" filename="ServiceApp.wsdl" />
-    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://192.168.1.34/SeaceService/ServiceApp.svc?xsd=xsd0" filename="ServiceApp0.xsd" />
-    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://192.168.1.34/SeaceService/ServiceApp.svc?xsd=xsd2" filename="ServiceApp1.xsd" />
-    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.DiscoveryDocumentReference" url="http://192.168.1.34/SeaceService/ServiceApp.svc?disco" filename="ServiceApp.disco" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.DiscoveryDocumentReference" url="http://gsaico-001-site1.btempurl.com/SeaceService/ServiceApp.svc?disco" filename="ServiceApp.disco" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://gsaico-001-site1.btempurl.com/SeaceService/ServiceApp.svc?wsdl" filename="ServiceApp.wsdl" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://gsaico-001-site1.btempurl.com/SeaceService/ServiceApp.svc?xsd=xsd2" filename="ServiceApp.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://gsaico-001-site1.btempurl.com/SeaceService/ServiceApp.svc?xsd=xsd1" filename="ServiceApp0.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://gsaico-001-site1.btempurl.com/SeaceService/ServiceApp.svc?xsd=xsd0" filename="ServiceApp1.xsd" />
   </Results>
 </DiscoveryClientResultsFile>

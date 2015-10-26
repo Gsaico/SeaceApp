@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SeaceWCF.Assembler;
+using SeaceWCF.Dtos;
 
 namespace SeaceWCF
 {
@@ -122,6 +123,33 @@ namespace SeaceWCF
 
                     if (entity == null) return null;
                     return SeaceWCF.Assembler.personAssembler.ToDTO(entity);
+
+                }
+            }
+            catch (Exception)
+            {
+                throw new NotImplementedException();
+            };
+        }
+
+        public bool VerificarPassword(personDTO dto)
+        {
+            try
+            {
+                using (var modelo = new dbSEACEappEntities())
+                {
+                    var entity = modelo.persons.Where(q => q.username == dto.username && q.password == dto.password).Select(q => q).FirstOrDefault();
+
+                    if (entity != null)   
+                    {
+                        //Elusuario existe.
+                        return true;
+                    }
+                    else    
+                    {
+                        //El usuario no existe
+                        return false;
+                    }
 
                 }
             }

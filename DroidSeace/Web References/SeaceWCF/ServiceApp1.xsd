@@ -1,98 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/SeaceWCF.Dtos" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SeaceWCF.Dtos" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:complexType name="personDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="active" nillable="true" type="xs:boolean" />
-      <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="first_name" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="forumPosts" nillable="true" type="tns:ArrayOfforumPostDTO" />
-      <xs:element minOccurs="0" name="forumVotes" nillable="true" type="tns:ArrayOfforumVoteDTO" />
-      <xs:element minOccurs="0" name="idPerson" type="xs:long" />
-      <xs:element minOccurs="0" name="last_name" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="last_update" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="picture" nillable="true" type="xs:base64Binary" />
-      <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="personDTO" nillable="true" type="tns:personDTO" />
-  <xs:complexType name="ArrayOfforumPostDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="forumPostDTO" nillable="true" type="tns:forumPostDTO" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfforumPostDTO" nillable="true" type="tns:ArrayOfforumPostDTO" />
-  <xs:complexType name="forumPostDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="content_forum" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="date" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="forumPost1" nillable="true" type="tns:forumPostDTO" />
-      <xs:element minOccurs="0" name="forumPosts1" nillable="true" type="tns:ArrayOfforumPostDTO" />
-      <xs:element minOccurs="0" name="forumSubcategory" nillable="true" type="tns:forumSubcategoryDTO" />
-      <xs:element minOccurs="0" name="forumVotes" nillable="true" type="tns:ArrayOfforumVoteDTO" />
-      <xs:element minOccurs="0" name="idForumPost" type="xs:long" />
-      <xs:element minOccurs="0" name="idPerson" nillable="true" type="xs:long" />
-      <xs:element minOccurs="0" name="idSubcategory" nillable="true" type="xs:long" />
-      <xs:element minOccurs="0" name="ip" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="parent_post" nillable="true" type="xs:long" />
-      <xs:element minOccurs="0" name="person" nillable="true" type="tns:personDTO" />
-      <xs:element minOccurs="0" name="title" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="forumPostDTO" nillable="true" type="tns:forumPostDTO" />
-  <xs:complexType name="forumSubcategoryDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="date" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="forumCategory" nillable="true" type="tns:forumCategoryDTO" />
-      <xs:element minOccurs="0" name="forumPosts" nillable="true" type="tns:ArrayOfforumPostDTO" />
-      <xs:element minOccurs="0" name="idCategory" nillable="true" type="xs:long" />
-      <xs:element minOccurs="0" name="idSubcategory" type="xs:long" />
-      <xs:element minOccurs="0" name="ip" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="title" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="forumSubcategoryDTO" nillable="true" type="tns:forumSubcategoryDTO" />
-  <xs:complexType name="forumCategoryDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="date" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="forumSubcategories" nillable="true" type="tns:ArrayOfforumSubcategoryDTO" />
-      <xs:element minOccurs="0" name="idCategory" type="xs:long" />
-      <xs:element minOccurs="0" name="ip" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="title" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="forumCategoryDTO" nillable="true" type="tns:forumCategoryDTO" />
-  <xs:complexType name="ArrayOfforumSubcategoryDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="forumSubcategoryDTO" nillable="true" type="tns:forumSubcategoryDTO" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfforumSubcategoryDTO" nillable="true" type="tns:ArrayOfforumSubcategoryDTO" />
-  <xs:complexType name="ArrayOfforumVoteDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="forumVoteDTO" nillable="true" type="tns:forumVoteDTO" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfforumVoteDTO" nillable="true" type="tns:ArrayOfforumVoteDTO" />
-  <xs:complexType name="forumVoteDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="comment" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="date" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="forumPost" nillable="true" type="tns:forumPostDTO" />
-      <xs:element minOccurs="0" name="idForumPost" nillable="true" type="xs:long" />
-      <xs:element minOccurs="0" name="idPerson" nillable="true" type="xs:long" />
-      <xs:element minOccurs="0" name="idVote" type="xs:long" />
-      <xs:element minOccurs="0" name="ip" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="person" nillable="true" type="tns:personDTO" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="forumVoteDTO" nillable="true" type="tns:forumVoteDTO" />
-  <xs:complexType name="ArrayOfpersonDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="personDTO" nillable="true" type="tns:personDTO" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfpersonDTO" nillable="true" type="tns:ArrayOfpersonDTO" />
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://gsaico-001-site1.btempurl.com/SeaceService/ServiceApp.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/SeaceWCF.Dtos" />
+  <xs:element name="InsertarPersona">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/SeaceWCF.Dtos" minOccurs="0" name="dto" nillable="true" type="q1:personDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertarPersonaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="InsertarPersonaResult" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ActualizarPersona">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/SeaceWCF.Dtos" minOccurs="0" name="dto" nillable="true" type="q2:personDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ActualizarPersonaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ActualizarPersonaResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EliminarPersona">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idperson" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EliminarPersonaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EliminarPersonaResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarPersonaXnombre">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nombrespersona" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarPersonaXnombreResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/SeaceWCF.Dtos" minOccurs="0" name="ListarPersonaXnombreResult" nillable="true" type="q3:ArrayOfpersonDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarPersonas">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarPersonasResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/SeaceWCF.Dtos" minOccurs="0" name="ListarPersonasResult" nillable="true" type="q4:ArrayOfpersonDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BuscarPersonaPorID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idperson" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BuscarPersonaPorIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/SeaceWCF.Dtos" minOccurs="0" name="BuscarPersonaPorIDResult" nillable="true" type="q5:personDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerificarPassword">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/SeaceWCF.Dtos" minOccurs="0" name="dto" nillable="true" type="q6:personDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerificarPasswordResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="VerificarPasswordResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

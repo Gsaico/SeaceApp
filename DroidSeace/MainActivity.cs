@@ -35,7 +35,42 @@ namespace DroidSeace
 
         private void BtnLogin_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            SeaceWCF.ServiceApp service = new SeaceWCF.ServiceApp();
+
+            SeaceWCF.personDTO persona = new SeaceWCF.personDTO();
+            persona.username = txtUsuario.Text;
+            persona.password = txtPassword.Text;
+
+            service.VerificarPasswordCompleted += Service_VerificarPasswordCompleted;
+            service.VerificarPasswordAsync(persona);
+            lblMensaje.Text = "Validando, por favor espere...";
+    
+
+           
+            btnLogin.Enabled = false;
+             
+        }
+
+        private void Service_VerificarPasswordCompleted(object sender, SeaceWCF.VerificarPasswordCompletedEventArgs e)
+        {
+            btnLogin.Enabled = true;
+            // lblMensaje.Text = "Concretado...";
+            //e.VerificarPasswordResult;
+
+            //  lblMensaje.Text = e.VerificarPasswordResult.ToString();
+
+                if (!e.VerificarPasswordResult)
+               {
+                   lblMensaje.Text = "Usuario con acceso denegado";
+            btnLogin.Enabled = true;
+                    return;
+               }
+               lblMensaje.Text = "Usuario con acceso permitido";
+
+            //llamo a nueva ventana
+            var intent = new Intent(this, typeof(MenuActivity));
+            //intent.PutStringArrayListExtra("phone_numbers", _phoneNumbers);
+            StartActivity(intent);
         }
     }
 }
